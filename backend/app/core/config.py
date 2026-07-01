@@ -52,9 +52,7 @@ class Settings(BaseSettings):
     CELERY_RESULT_BACKEND: str = "redis://localhost:6379/2"
 
     # ── CORS ─────────────────────────────────────────────────
-    #CORS_ORIGINS: List[str] = ["http://localhost:3000", "http://localhost:5173"]
-    from typing import List
-
+    # CORS_ORIGINS: List[str] = ["http://localhost:3000", "http://localhost:5173"]
     CORS_ORIGINS: List[str] = ["*"]
 
     # ── Rate Limiting ────────────────────────────────────────
