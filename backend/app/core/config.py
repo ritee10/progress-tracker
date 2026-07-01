@@ -53,7 +53,9 @@ class Settings(BaseSettings):
 
     # ── CORS ─────────────────────────────────────────────────
     #CORS_ORIGINS: List[str] = ["http://localhost:3000", "http://localhost:5173"]
-    CORS_ORIGINS = ["*"]
+    from typing import List
+
+    CORS_ORIGINS: List[str] = ["*"]
 
     # ── Rate Limiting ────────────────────────────────────────
     RATE_LIMIT_PER_MINUTE: int = 100
