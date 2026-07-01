@@ -50,6 +50,14 @@ class DashboardStatisticsDTO(BaseModel):
     pinnedSkillsCount: int
     overdueSkillsCount: int
 
+class RecentAchievement(BaseModel):
+    id: UUID4
+    name: str
+    description: Optional[str] = None
+    icon_url: Optional[str] = None
+    rarity: Optional[str] = None
+    earned_at: Optional[str] = None
+
 class DashboardResponse(BaseModel):
     statistics: DashboardStatisticsDTO
     pinnedSkills: List[SkillCardDTO]
