@@ -8,11 +8,26 @@ export default function LoginPage() {
   const navigate = useNavigate();
 
   const handleLogin = (e: React.FormEvent) => {
-    e.preventDefault();
-    // Mock login for foundation Phase 14
-    setAuth('mock-jwt-token', { id: 1, name: 'User' });
-    navigate('/dashboard');
-  };
+      e.preventDefault();
+
+      // Mock login for foundation Phase 14
+      setAuth(
+        'mock-jwt-token',
+        'mock-refresh-token',
+        {
+          id: '1',
+          email: 'user@example.com',
+          username: 'user',
+          full_name: 'Demo User',
+          avatar_url: null,
+          role: 'user',
+          is_active: true,
+          is_verified: true,
+        }
+      );
+
+      navigate('/dashboard');
+    };
 
   return (
     <div className="bg-card text-card-foreground shadow-sm rounded-xl border p-6">
