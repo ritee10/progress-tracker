@@ -1,0 +1,43 @@
+# ============================================================
+# Skill Progress Tracker — Backend Dependencies
+# ============================================================
+# Production-grade FastAPI backend
+# Python 3.11+
+# ============================================================
+
+# ── Framework ────────────────────────────────────────────────
+fastapi==0.115.12
+uvicorn[standard]==0.34.3
+
+# ── Database ─────────────────────────────────────────────────
+sqlalchemy[asyncio]==2.0.41
+asyncpg==0.30.0
+psycopg2-binary==2.9.10
+alembic==1.16.2
+
+# ── Validation & Settings ───────────────────────────────────
+pydantic==2.11.3
+pydantic-settings==2.9.1
+email-validator==2.2.0
+
+# ── Authentication ───────────────────────────────────────────
+python-jose[cryptography]==3.4.0
+passlib[bcrypt]==1.7.4
+bcrypt==4.3.0
+python-multipart==0.0.20
+google-auth==2.35.0
+
+# ── Caching & Task Queue ────────────────────────────────────
+redis==6.2.0
+celery==5.5.2
+
+# ── Testing ──────────────────────────────────────────────────
+pytest==8.4.1
+pytest-asyncio==1.0.0
+httpx==0.28.1
+pytest-cov==6.2.1
+
+# ── Utilities ────────────────────────────────────────────────
+python-dateutil==2.9.0
+pypdf==5.1.0
+supabase==2.11.0
