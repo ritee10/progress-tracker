@@ -5,8 +5,8 @@ from fastapi import APIRouter, Depends, Query
 from sqlalchemy.ext.asyncio import AsyncSession
 
 from app.database.session import get_db
-from app.models.user import User
-from app.services.auth_service import get_current_user
+#from app.models.user import User
+from app.core.dependencies import CurrentUser
 from app.services.search_service import SearchService
 from app.schemas.search import (
     GlobalSearchResponse,
@@ -23,6 +23,7 @@ def get_search_service(db: AsyncSession = Depends(get_db)) -> SearchService:
 
 @router.get("", response_model=GlobalSearchResponse)
 async def global_search(
+    current_user: CurrentUser,
     query: str = Query("", description="Search term"),
     page: int = Query(1, ge=1),
     limit: int = Query(20, ge=1, le=100),
@@ -31,7 +32,7 @@ async def global_search(
     depth_level: Optional[int] = Query(None, description="Filter topics by depth level"),
     completed: Optional[bool] = Query(None, description="Filter by completion status"),
     sort_by: str = Query("relevance", description="Sorting method: relevance, name_asc, name_desc"),
-    current_user: User = Depends(get_current_user),
+
     service: SearchService = Depends(get_search_service)
 ):
     """
@@ -51,11 +52,12 @@ async def global_search(
 
 @router.get("/topics", response_model=TopicSearchResponse)
 async def topic_search(
+    current_user: CurrentUser,
     query: str = Query("", description="Search term"),
     skill_id: Optional[UUID] = Query(None, description="Filter by Skill ID"),
     page: int = Query(1, ge=1),
     limit: int = Query(20, ge=1, le=100),
-    current_user: User = Depends(get_current_user),
+
     service: SearchService = Depends(get_search_service)
 ):
     """
@@ -71,10 +73,11 @@ async def topic_search(
 
 @router.get("/skills", response_model=SkillSearchResponse)
 async def skill_search(
+    current_user: CurrentUser,
     query: str = Query("", description="Search term"),
     page: int = Query(1, ge=1),
     limit: int = Query(20, ge=1, le=100),
-    current_user: User = Depends(get_current_user),
+
     service: SearchService = Depends(get_search_service)
 ):
     """
@@ -89,10 +92,11 @@ async def skill_search(
 
 @router.get("/notes", response_model=NoteSearchResponse)
 async def note_search(
+    current_user: CurrentUser,
     query: str = Query("", description="Search term"),
     page: int = Query(1, ge=1),
     limit: int = Query(20, ge=1, le=100),
-    current_user: User = Depends(get_current_user),
+
     service: SearchService = Depends(get_search_service)
 ):
     """
@@ -107,10 +111,11 @@ async def note_search(
 
 @router.get("/cross-skill", response_model=CrossSkillSearchResponse)
 async def cross_skill_search(
+    current_user: CurrentUser,
     query: str = Query("", description="Search term"),
     page: int = Query(1, ge=1),
     limit: int = Query(20, ge=1, le=100),
-    current_user: User = Depends(get_current_user),
+
     service: SearchService = Depends(get_search_service)
 ):
     """
