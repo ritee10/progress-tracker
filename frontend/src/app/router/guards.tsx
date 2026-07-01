@@ -22,7 +22,7 @@ function isTokenExpired(token: string): boolean {
 export const ProtectedRoute = () => {
   const token = useAuthStore((state) => state.token);
 
-  if (!token || isTokenExpired(token)) {
+  if (!token) {
     return <Navigate to="/login" replace />;
   }
 
@@ -32,7 +32,7 @@ export const ProtectedRoute = () => {
 export const PublicRoute = () => {
   const token = useAuthStore((state) => state.token);
 
-  if (token && !isTokenExpired(token)) {
+  if (token) {
     return <Navigate to="/dashboard" replace />;
   }
 
